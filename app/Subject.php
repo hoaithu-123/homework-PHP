@@ -10,7 +10,6 @@ class Subject extends Model
         'name',
         'slug',
         'subject_code',
-        'teacher_id',
         'description'
     ];
 

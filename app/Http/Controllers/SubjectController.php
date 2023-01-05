@@ -48,7 +48,6 @@ class SubjectController extends Controller
         $request->validate([
             'name'          => 'required|string|max:255|unique:subjects',
             'subject_code'  => 'required|numeric',
-            'teacher_id'    => 'required|numeric',
             'description'   => 'required|string|max:255',
         ]);
 
@@ -56,14 +55,10 @@ class SubjectController extends Controller
         $subject->name = $request->name;
         $subject->slug = Str::slug($request->name);
         $subject->subject_code = $request->subject_code;
-        $subject->teacher_id = $request->teacher_id;
         $subject->description = $request->description;
         $subject->save();
 
-        $subject->classes()->attach($request->class_id);
-
-
-        return redirect()->route('subject.index');
+       return redirect()->route('subject.create');
     }
 
     /**
